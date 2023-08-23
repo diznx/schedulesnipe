@@ -14,4 +14,6 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 
 driver.get('https://USERNAME:PASSWORD@WEBSITE')
 time.sleep(5)
-driver.get('SECONDPAGETONAVTOAFTERLOGIN')
+
+select_dropdown_option = driver.find_element(By.XPATH, '//*[@name="srch"]/option[4]').click()
+press_go_button = driver.find_element(By.XPATH, '//*[@name="sub"]').click()
