@@ -14,13 +14,6 @@ options.add_experimental_option("detach", True)
 options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-driver.get('WEBSITEWEBSITEWEBSITE')
-search = driver.find_element(by=By.LINK_TEXT, value="LOGIN").click()
+driver.get('https://USERNAME:PASSWORD@WEBSITE')
 time.sleep(5)
-
-# search.send_keys(Keys.RETURN)
-
-# https://apps.schedule360.com/sart
-
-# time.sleep(5)
-# driver.close()
+driver.get('SECONDPAGETONAVTOAFTERLOGIN')
