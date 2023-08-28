@@ -37,14 +37,26 @@ def schedule_check():
 
 schedule_check()
 
-try:
-	driver.get('LINKTOTHEDAYSSCHEDULE')
-	driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]/option[4]').click()
-	driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
-	time.sleep(2)
-	driver.find_element(By.XPATH, "//*[contains(@href, 'LINKONPAGE')]")
-	driver.find_element(By.XPATH, "//*[contains(@href, 'CERTAINWEBPAGEWITHINWEBSITE')]").click()
-	time.sleep(2)
-  press_schedule_now_button = driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
-except:
-	pass
+def first_wednesday_thursday():
+	try:
+		driver.get('WEBSITE')
+		driver.find_element(By.XPATH, '//*[@name="srch"]/option[4]').click()
+		driver.find_element(By.XPATH, '//*[@name="sub"]').click()
+		time.sleep(2)
+		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]")
+		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]").click()
+		time.sleep(2)
+		driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
+	except:
+		driver.get('WEBSITE')
+		driver.find_element(By.XPATH, '//*[@name="srch"]/option[4]').click()
+		driver.find_element(By.XPATH, '//*[@name="sub"]').click()
+		time.sleep(2)
+		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]")
+		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]").click()
+		time.sleep(2)
+		driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
+	else:
+		pass
+
+first_wednesday_thursday()
