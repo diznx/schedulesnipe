@@ -1,3 +1,4 @@
+import schedule
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,53 +11,54 @@ options.add_experimental_option("detach", True)
 options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-driver.get('https://USERNAME:PASSWORD@WEBSITE.COM')
-time.sleep(2)
-
-driver.get('CERTAINWEBPAGEWITHINWEBSITE')
-select_dropdown_option = driver.find_element(By.XPATH, '//*[@name="NAMEOFDROPDOWN"]/option[4]').click()
-press_go_button = driver.find_element(By.XPATH, '//*[@name="sub"]').click()
-time.sleep(2)
-accept_button = driver.find_element(By.XPATH, "//*[contains(@href, 'WEBSITELINK')]").click()
-time.sleep(2)
-press_schedule_now_button = driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
-
 def schedule_check():
 	try:
-		driver.get('CERTAINWEBPAGEWITHINWEBSITE')
-		driver.find_element(By.XPATH, '//*[@name="NAMEOFDROPDOWN"]/option[2]').click()
-		driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
+		driver.get('securelogintowebsite')
 		time.sleep(2)
-		driver.find_element(By.XPATH, "//*[contains(@href, 'CERTAINWEBPAGEWITHINWEBSITE')]")
+		driver.get('website')
+		driver.find_element(By.XPATH, '//*[@name="srch"]/option[1]').click()
+		driver.find_element(By.XPATH, '//*[@name="sub"]').click()
+		time.sleep(2)
+		driver.find_element(By.XPATH, "//*[contains(@href, 'website')]")
 	except:
 		driver.refresh()
-		time.sleep(5)
+		time.sleep(30)
 		schedule_check()
 	else:
 		pass
 
-schedule_check()
-
-def first_wednesday_thursday():
-	try:
-		driver.get('WEBSITE')
-		driver.find_element(By.XPATH, '//*[@name="srch"]/option[4]').click()
+def all_days():
+		try:
+		driver.get('website')
+		driver.find_element(By.XPATH, '//*[@name="srch"]/option[1]').click()
 		driver.find_element(By.XPATH, '//*[@name="sub"]').click()
 		time.sleep(2)
-		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]")
-		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]").click()
+		driver.find_element(By.XPATH, "//*[contains(@href, '1111')]")
+		driver.find_element(By.XPATH, "//*[contains(@href, 'website')]").click()
 		time.sleep(2)
-		driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
+		press_schedule_now_button = driver.find_element(By.XPATH, '//*[@name="dropdown"]').click()
 	except:
-		driver.get('WEBSITE')
-		driver.find_element(By.XPATH, '//*[@name="srch"]/option[4]').click()
-		driver.find_element(By.XPATH, '//*[@name="sub"]').click()
-		time.sleep(2)
-		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]")
-		driver.find_element(By.XPATH, "//*[contains(@href, 'LINK')]").click()
-		time.sleep(2)
-		driver.find_element(By.XPATH, '//*[@name="NAMEOFBUTTON"]').click()
-	else:
 		pass
 
-first_wednesday_thursday()
+		try:
+		driver.get('website')
+		driver.find_element(By.XPATH, '//*[@name="srch"]/option[1]').click()
+		driver.find_element(By.XPATH, '//*[@name="sub"]').click()
+		time.sleep(2)
+		driver.find_element(By.XPATH, "//*[contains(@href, '1111')]")
+		driver.find_element(By.XPATH, "//*[contains(@href, 'website')]").click()
+		time.sleep(2)
+		press_schedule_now_button = driver.find_element(By.XPATH, '//*[@name="dropdown"]').click()
+	except:
+		pass
+
+def job():
+	schedule_check()
+	all_days()
+
+schedule.every().day.at("06:55").do(job)
+
+
+while True:
+	schedule.run_pending()
+	time.sleep(1)
