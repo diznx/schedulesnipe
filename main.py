@@ -27,6 +27,8 @@ def schedule_check():
 	else:
 		pass
 
+schedule_check()
+
 def all_days():
 		try:
 		driver.get('website')
